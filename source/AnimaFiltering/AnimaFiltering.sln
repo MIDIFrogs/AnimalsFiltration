@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimaFiltering", "AnimaFilt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimaFiltering.Desktop", "AnimaFiltering.Desktop\AnimaFiltering.Desktop.csproj", "{4F02CD8C-2EF1-4E6F-A00C-72C5AB658394}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Avalonia.Microcharts", "Avalonia.Microcharts\Avalonia.Microcharts.csproj", "{D2449B60-17AE-491A-894B-4C9D18F566C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4F02CD8C-2EF1-4E6F-A00C-72C5AB658394}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F02CD8C-2EF1-4E6F-A00C-72C5AB658394}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F02CD8C-2EF1-4E6F-A00C-72C5AB658394}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2449B60-17AE-491A-894B-4C9D18F566C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2449B60-17AE-491A-894B-4C9D18F566C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2449B60-17AE-491A-894B-4C9D18F566C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2449B60-17AE-491A-894B-4C9D18F566C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

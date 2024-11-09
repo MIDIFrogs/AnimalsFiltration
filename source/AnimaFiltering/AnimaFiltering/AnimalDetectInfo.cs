@@ -8,5 +8,5 @@ using YoloDotNet.Models;
 
 namespace AnimaFiltering
 {
-    public readonly record struct AnimalDetectInfo(string FileName, SKRectI Detection, bool IsGood);
+    public readonly record struct AnimalDetectInfo(string FileName, SKRectI Detection, SKSizeI ImageSize, bool IsGood);
 }

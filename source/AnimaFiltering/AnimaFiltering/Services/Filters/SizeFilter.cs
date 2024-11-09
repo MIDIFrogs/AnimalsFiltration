@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SkiaSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace AnimaFiltering.Services.Filters
 {
     internal class SizeFilter(AppPreferences preferences) : IPostProcessingFilter
     {
-        public bool CheckDetection(ObjectDetection detection)
+        public bool CheckDetection(ObjectDetection detection, SKImage image)
         {
             return detection.BoundingBox.Width >= preferences.MinWidth && detection.BoundingBox.Height >= preferences.MinHeight;
         }

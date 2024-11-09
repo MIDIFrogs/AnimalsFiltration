@@ -1,36 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-//using YoloDotNet.Models;
-using OpenCvSharp;
+﻿using OpenCvSharp;
+using SkiaSharp;
+using YoloDotNet.Extensions;
+using YoloDotNet.Models;
 
 namespace AnimaFiltering.Services.Filters
 {
-    internal class SizeFilter(AppPreferences preferences) : IPostProcessingFilter
+    internal class UnFocus(AppPreferences preferences) : IPostProcessingFilter
     {
-        public bool CheckDetection(ObjectDetection detection)
+        public Mat ConvertSkiaSharpImageToMat(SKImage skImage, SKRectI clipRect)
         {
-            return detection.BoundingBox.Width >= preferences.MinWidth && detection.BoundingBox.Height >= preferences.MinHeight;
+            // Step 1: Create a new SKImage from the clipped area
+            using (var croppedImage = skImage.Subset(SKRectI.Intersect(skImage.Info.Rect, clipRect)))
+            {
+                // Step 2: Encode the cropped SKImage to byte array
+                using (var data = croppedImage.Encode())
+                {
+                    // Step 3: Create a Mat from the byte array
+                    using (var mat = Mat.FromImageData(data.Span))
+                    {
+                        return mat.Clone(); // Return a clone to avoid disposing issues
+                    }
+                }
+            }
         }
-        11                              11` 11  1   1                                                                                                                                                                               
-        public class UnFocus()
+
+        public bool CheckDetection(ObjectDetection detection, SKImage image)
         {
-            Mat grad = new Mat();
+            using Mat t = ConvertSkiaSharpImageToMat(image, detection.BoundingBox);
             int scale = 1;
+            using Mat grad = new Mat();
             int delta = 0;
             int ddepth = MatType.CV_8U;
-            Mat grad_x = new Mat();
-            Mat grad_y = new Mat();
-            Mat abs_grad_x = new Mat();
-            Mat abs_grad_y = new Mat();
+            using Mat grad_x = new Mat();
+            using Mat grad_y = new Mat();
+            using Mat abs_grad_x = new Mat();
+            using Mat abs_grad_y = new Mat();
 
             // Gradient X
-            Cv2.Sobel(matFromSensor, grad_x, ddepth, 1, 0, 3, scale, delta, BorderTypes.Default);
+            Cv2.Sobel(t, grad_x, ddepth, 1, 0, 3, scale, delta, BorderTypes.Default);
 
             // Gradient Y
-            Cv2.Sobel(matFromSensor, grad_y, ddepth, 0, 1, 3, scale, delta, BorderTypes.Default);
+            Cv2.Sobel(t, grad_y, ddepth, 0, 1, 3, scale, delta, BorderTypes.Default);
 
             // Convert to absolute scale
             Cv2.ConvertScaleAbs(grad_x, abs_grad_x);
@@ -44,6 +54,7 @@ namespace AnimaFiltering.Services.Filters
 
             // Calculate focus measure
             double focusMeasure = mu[0] * mu[0];
+            return focusMeasure > 70;
         }
     }
 }

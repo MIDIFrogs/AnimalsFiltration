@@ -13,6 +13,7 @@ namespace AnimaFiltering.Services
         public UserFilters(AppPreferences preferences)
         {
             Add(new SizeFilter(preferences));
+            Add(new UnFocus(preferences));
         }
     }
 }

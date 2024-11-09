@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Avalonia.Desktop" Version="11.2.0" />
+      <PackageReference Include="Avalonia.Skia" Version="11.2.0" />
+      <PackageReference Include="SkiaSharp" Version="2.88.9" />
+    </ItemGroup>
+
+</Project>

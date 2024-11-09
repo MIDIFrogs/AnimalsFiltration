@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AnimaFiltering.Services.Filters;
+﻿// Copyright 2024 (c) IOExcept10n (contact https://github.com/IOExcept10n)
+// Distributed under AGPL v3.0 license. See LICENSE.md file in the project root for more information
+using AnimaFiltering.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
 
 namespace AnimaFiltering.Services
 {
@@ -22,9 +17,20 @@ namespace AnimaFiltering.Services
                 .AddSingleton<YoloProvider>();
         }
 
-        public static IServiceCollection AddFilters(this IServiceCollection services) 
+        public static IServiceCollection AddViewModels(this IServiceCollection services)
         {
-            return services.AddSingleton<UserFilters>().AddSingleton<AnimalFilteringService>(); 
+            return services
+                .AddTransient<StatsViewModel>()
+                .AddTransient<MainViewModel>();
+        }
+
+        public static IServiceCollection AddFilters(this IServiceCollection services)
+        {
+            return services
+                .AddSingleton<UserFilters>()
+                .AddSingleton<AnimalFilteringService>()
+                .AddSingleton<CameraStats>()
+                .AddSingleton<ReportBuilder>();
         }
 
         public static IServiceCollection AddOptions(this IServiceCollection services)
