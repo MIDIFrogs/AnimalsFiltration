@@ -4,18 +4,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:microcharts="clr-namespace:Avalonia.Microcharts;assembly=Avalonia.Microcharts"
 			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="AnimaFiltering.Views.StatsView">
+             x:Class="AnimaFiltering.Views.StatsView"
+			 Width="800"
+			 Height="600"
+			 Background="#211D1C">
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="*"/>
 			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="*"/>
+			<RowDefinition Height="50"/>
 			<RowDefinition Height="5*"/>
-			<RowDefinition Height="*"/>
+			<RowDefinition Height="3*"/>
 		</Grid.RowDefinitions>
-		<ComboBox x:Name="CameraSelector" SelectionChanged="ComboBox_SelectionChanged" ItemsSource="{Binding Cameras}" Width="200" SelectedIndex="0"/>
-		<microcharts:MicrochartControl Grid.Row="1" Chart="{Binding Chart}" Margin="10, 10, 10, 10"/>
+		<ComboBox x:Name="CameraSelector" Background="#403634" SelectionChanged="ComboBox_SelectionChanged" ItemsSource="{Binding Cameras}" Width="200" SelectedIndex="0"/>
+		<microcharts:MicrochartControl Grid.ColumnSpan="2" Grid.Row="1" Chart="{Binding Chart}" Margin="10, 10, 10, 10"/>
 	</Grid>
 </UserControl>

@@ -3,10 +3,29 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
+    <Title>Animal Filter</Title>
+    <AssemblyVersion>1.1</AssemblyVersion>
+    <FileVersion>1.1</FileVersion>
+    <Authors>IOExcept10n,jojer_m,Dexitti,TWorker,WiverLord</Authors>
+    <Company>MIDIFrogs</Company>
+    <Description>An app that filters animal images</Description>
+    <Copyright>Copyright © MIDIFrogs, 2024</Copyright>
+    <PackageProjectUrl>https://github.com/MIDIFrogs/AnimalsFiltration</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/MIDIFrogs/AnimalsFiltration</RepositoryUrl>
+    <PackageTags>computer-vision;avalonia;csharp;crossplatform;yolo</PackageTags>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

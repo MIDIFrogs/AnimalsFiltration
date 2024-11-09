@@ -39,18 +39,18 @@ namespace AnimaFiltering.ViewModels
                         Label = "Хорошие фото",
                         ValueLabel = SelectedStats.GoodImages.ToString(),
                         Value = SelectedStats.GoodImages,
-                        TextColor = SKColors.Black,
+                        TextColor = SKColors.White,
                     },
                     new(){
                         Color = new SKColor(0xff, 0x55, 0x55, 0x70),
                         Label = "Плохие фото",
                         ValueLabel = (SelectedStats.ProcessedImages - SelectedStats.GoodImages).ToString(),
                         Value = SelectedStats.ProcessedImages - SelectedStats.GoodImages,
-                        TextColor = SKColors.Black
+                        TextColor = SKColors.White
                     }
                 ],
                 BackgroundColor = SKColor.Empty,
-                Margin = 30
+                Margin = 50
             };
         }
     }
