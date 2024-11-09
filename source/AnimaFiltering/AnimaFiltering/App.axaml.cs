@@ -1,18 +1,30 @@
-﻿using AnimaFiltering.ViewModels;
+﻿using AnimaFiltering.Services;
+using AnimaFiltering.ViewModels;
 using AnimaFiltering.Views;
 
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace AnimaFiltering;
 
 public partial class App : Application
 {
+    public static IServiceProvider Services { get; private set; } = null!;
+
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
+    }
+
+    public override void RegisterServices()
+    {
+        base.RegisterServices();
+        var services = new ServiceCollection().AddServices();
+        Services = services.BuildServiceProvider();
     }
 
     public override void OnFrameworkInitializationCompleted()
