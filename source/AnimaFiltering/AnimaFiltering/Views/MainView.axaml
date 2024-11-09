@@ -1,16 +1,145 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="clr-namespace:AnimaFiltering.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
              x:Class="AnimaFiltering.Views.MainView"
-             x:DataType="vm:MainViewModel">
-  <Design.DataContext>
-    <!-- This only sets the DataContext for the previewer in an IDE,
-         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-    <vm:MainViewModel />
-  </Design.DataContext>
+             x:Name="MainContainer"
+			 Design.Height="600" Design.Width="800"
+			 Width="800"
+			 Height="600"
+			 Background="#211D1C">
+	
+	<Grid DragDrop.AllowDrop ="True">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="10"/>
+			<ColumnDefinition Width="20*"/>
+			<ColumnDefinition Width="10"/>
+			<ColumnDefinition Width="20*"/>
+			<ColumnDefinition Width="10"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="10*"/>
+			<RowDefinition Height="10*"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="1.5*"/>
+		</Grid.RowDefinitions>
 
-  <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+		<Border CornerRadius="25" Grid.Row="1" Grid.RowSpan	="2" Grid.Column="1"
+				Background="#2C2827"
+				VerticalAlignment="Stretch"
+				DragDrop.AllowDrop ="True">
+
+			<TextBlock Text="Перетащите сюда вашу папку с фотографиями"
+					   VerticalAlignment="Center" Padding="20"
+					   HorizontalAlignment="Center" FontSize="32"
+					   TextWrapping="Wrap" TextAlignment="Center" Foreground="#99FFFFFF" />
+		</Border>
+		
+		<Border CornerRadius="25" Grid.Row="1" Grid.Column="3"
+        Background="#2C2827"
+        VerticalAlignment="Stretch"
+		Margin="10,10">
+		<StackPanel>
+				<TextBlock Text="Настройки"
+						   TextAlignment="Center"
+						   Foreground="#99FFFFFF"
+						   FontSize="28"/>
+
+				<TextBlock Text="Размер"
+						   Foreground="#99FFFFFF"
+						   FontSize="24"
+						   HorizontalAlignment="Left"
+						   Margin="10"/>
+				
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+					<Label Content="X"
+						   Foreground="#99FFFFFF"
+						   FontSize="24"
+						   Margin="16,0,4,0"
+						   HorizontalAlignment="Center"/>
+					<Border CornerRadius="25"
+							Width="100"
+							Background="#403634"
+							>
+						<TextBox BorderThickness="0"  
+								 Background="Transparent"/>
+					</Border>
+					<Label Content="px"
+						   Foreground="#99FFFFFF"
+						   FontSize="24"
+						   Margin="4,0,0,0"
+						   HorizontalAlignment="Center"/>
+					
+					
+					
+					<Label Content="Y"
+						   Foreground="#99FFFFFF"
+						   FontSize="24"
+						   Margin="16,0,4,0"
+						   HorizontalAlignment="Center"/>
+					<Border CornerRadius="25"
+							Width="100"
+							Background="#403634">
+						<TextBox BorderThickness="0" Text="" Background="Transparent"/>
+					</Border>
+					<Label Content="px"
+						   Foreground="#99FFFFFF"
+						   FontSize="24"
+						   HorizontalAlignment="Center"
+						   Margin="4,0,0,0"/>
+					
+					
+				</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="Камера"
+						   Foreground="#99FFFFFF"
+						   FontSize="24"
+						   HorizontalAlignment="Left"
+						   Margin="10,24"/>
+				<ComboBox ItemsSource=""
+						  BorderThickness="0"
+						  Margin="32,24" 
+						  Width="200" 
+						  Background="#403634">
+				</ComboBox>
+			</StackPanel>
+
+
+		</StackPanel>
+		</Border>
+
+		<Grid Grid.Column="3" Grid.Row="2" >
+			<Button Classes="round"
+					HorizontalAlignment="Stretch"
+					VerticalAlignment="Stretch"
+					Content="Начать обработку"
+					HorizontalContentAlignment="Center"
+					VerticalContentAlignment="Center"
+					Foreground="#211D1C"
+					FontSize="32"
+					Margin="0,163,0,0"
+					Height="72"
+					Width="300"
+					/>
+		</Grid>
+		<StackPanel Orientation="Horizontal" VerticalAlignment="Center" 
+					HorizontalAlignment="Center"
+					Grid.Row="3"
+					Grid.RowSpan="2"
+					Grid.ColumnSpan="5"
+					>
+			<ProgressBar 
+					 Background="#2C2827"
+					 Width="500"
+					 Height="8"
+					 HorizontalAlignment="Center" />
+			<Label Content="1232233/1000" Foreground="#99FFFFFF">
+				
+			</Label>
+
+		</StackPanel>
+
+
+	</Grid>
+	
 </UserControl>
