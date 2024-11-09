@@ -1,13 +1,15 @@
-﻿using Avalonia.Logging;
+﻿// Copyright 2024 (c) MIDIFrogs (contact https://github.com/MIDIFrogs)
+// Distributed under AGPL v3.0 license. See LICENSE.md file in the project root for more information
+using Avalonia.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using YoloDotNet;
 
 namespace AnimaFiltering.Services
 {
+    /// <summary>
+    /// Represents a service that provides YOLO model for animals detection.
+    /// </summary>
+    /// <param name="preferences">App preferences to use.</param>
     public class YoloProvider(AppPreferences preferences)
     {
         private const string ModelPath = "model.onnx";

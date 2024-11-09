@@ -1,12 +1,23 @@
-﻿using OpenCvSharp;
+﻿// Copyright 2024 (c) MIDIFrogs (contact https://github.com/MIDIFrogs)
+// Distributed under AGPL v3.0 license. See LICENSE.md file in the project root for more information
+using OpenCvSharp;
 using SkiaSharp;
-using YoloDotNet.Extensions;
 using YoloDotNet.Models;
 
 namespace AnimaFiltering.Services.Filters
 {
+    /// <summary>
+    /// Filter that checks for image focus value.
+    /// </summary>
+    /// <param name="preferences"></param>
     internal class UnFocus(AppPreferences preferences) : IPostProcessingFilter
     {
+        /// <summary>
+        /// Converts SkiaSharp image to OpenCV Mat. Also clips an image by given clip rect.
+        /// </summary>
+        /// <param name="skImage">An image to clip and convert.</param>
+        /// <param name="clipRect">Clipping rectangle.</param>
+        /// <returns>Converted OpenCV Mat.</returns>
         public Mat ConvertSkiaSharpImageToMat(SKImage skImage, SKRectI clipRect)
         {
             // Step 1: Create a new SKImage from the clipped area

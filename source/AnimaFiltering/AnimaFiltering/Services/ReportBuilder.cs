@@ -1,14 +1,24 @@
-﻿using System;
+﻿// Copyright 2024 (c) MIDIFrogs (contact https://github.com/MIDIFrogs)
+// Distributed under AGPL v3.0 license. See LICENSE.md file in the project root for more information
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AnimaFiltering.Services
 {
+    /// <summary>
+    /// Represents a builder for the CSV reports.
+    /// </summary>
     internal class ReportBuilder
     {
+        /// <summary>
+        /// Writes filtering results into CSV file.
+        /// </summary>
+        /// <param name="detections">Set of detections to log.</param>
+        /// <param name="selectedCamera">A camera to save stats for.</param>
+        /// <param name="path">Path to save CSV to.</param>
+        /// <param name="progress">Progress handler to notify about image processing.</param>
         public async Task WriteToCsvAsync(IAsyncEnumerable<AnimalDetectInfo> detections, CameraStats selectedCamera, string path, IProgress<int> progress)
         {
             using var writer = new StreamWriter(path);
