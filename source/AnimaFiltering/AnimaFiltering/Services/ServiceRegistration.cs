@@ -8,12 +8,14 @@ namespace AnimaFiltering.Services
     internal static class ServiceRegistration
     {
         private const string OptionsFileName = "Options.json";
+        private const string CamerasFileName = "Cameras.json";
 
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             return services
                 .AddOptions()
                 .AddFilters()
+                .AddViewModels()
                 .AddSingleton<YoloProvider>();
         }
 
@@ -36,7 +38,9 @@ namespace AnimaFiltering.Services
         public static IServiceCollection AddOptions(this IServiceCollection services)
         {
             AppPreferences options = AppPreferences.LoadOrCreate(OptionsFileName);
+            CameraManager manager = CameraManager.LoadOrCreate(CamerasFileName);
             services.AddSingleton(options);
+            services.AddSingleton(manager);
             return services;
         }
     }

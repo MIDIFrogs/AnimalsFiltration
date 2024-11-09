@@ -19,9 +19,10 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*"/>
 			<RowDefinition Height="10*"/>
-			<RowDefinition Height="10*"/>
+			<RowDefinition Height="6*"/>
 			<RowDefinition Height="*"/>
 			<RowDefinition Height="1.5*"/>
+			<RowDefinition Height="40"/>
 		</Grid.RowDefinitions>
 
 		<Border CornerRadius="25" Grid.Row="1" Grid.RowSpan	="2" Grid.Column="1"
@@ -51,42 +52,57 @@
 						   HorizontalAlignment="Left"
 						   Margin="10"/>
 				
-				<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-					<Label Content="X"
+				<StackPanel Orientation="Vertical" Spacing="10">
+					<StackPanel Orientation="Horizontal">
+						<Label Content="X"
 						   Foreground="#99FFFFFF"
 						   FontSize="24"
 						   Margin="16,0,4,0"
 						   HorizontalAlignment="Center"/>
-					<Border CornerRadius="25"
-							Width="100"
-							Background="#403634"
-							>
-						<TextBox BorderThickness="0"  
-								 Background="Transparent"/>
-					</Border>
-					<Label Content="px"
-						   Foreground="#99FFFFFF"
-						   FontSize="24"
-						   Margin="4,0,0,0"
-						   HorizontalAlignment="Center"/>
-					
-					
-					
-					<Label Content="Y"
-						   Foreground="#99FFFFFF"
-						   FontSize="24"
-						   Margin="16,0,4,0"
-						   HorizontalAlignment="Center"/>
-					<Border CornerRadius="25"
-							Width="100"
+						<Border CornerRadius="25"
+							Width="220"
 							Background="#403634">
-						<TextBox BorderThickness="0" Text="" Background="Transparent"/>
-					</Border>
-					<Label Content="px"
+							<NumericUpDown x:Name="XSize"
+										   BorderThickness="0"
+										   Minimum="0"
+										   Maximum="1000"
+										   Value="128"
+										   Background="Transparent"/>
+						</Border>
+						<Label Content="px"
+							   Foreground="#99FFFFFF"
+							   FontSize="24"
+							   Margin="4,0,0,0"
+							   HorizontalAlignment="Center"/>
+					</StackPanel>
+
+
+
+
+
+					<StackPanel Orientation="Horizontal">
+						<Label Content="Y"
 						   Foreground="#99FFFFFF"
 						   FontSize="24"
-						   HorizontalAlignment="Center"
-						   Margin="4,0,0,0"/>
+						   Margin="16,0,4,0"
+						   HorizontalAlignment="Center"/>
+						<Border CornerRadius="25"
+							Width="220"
+							Background="#403634">
+							<NumericUpDown x:Name="YSize"
+										   BorderThickness="0"
+										   Minimum="0"
+										   Maximum="1000"
+										   Value="128"
+										   Background="Transparent"/>
+						</Border>
+						<Label Content="px"
+							   Foreground="#99FFFFFF"
+							   FontSize="24"
+							   HorizontalAlignment="Center"
+							   Margin="4,0,0,0"/>
+					</StackPanel>
+					
 					
 					
 				</StackPanel>
@@ -96,11 +112,12 @@
 						   FontSize="24"
 						   HorizontalAlignment="Left"
 						   Margin="10,24"/>
-				<ComboBox ItemsSource=""
+				<ComboBox ItemsSource="{Binding Cameras}"
 						  BorderThickness="0"
 						  Margin="32,24" 
 						  Width="200" 
-						  Background="#403634">
+						  Background="#403634"
+						  x:Name="CameraSelector">
 				</ComboBox>
 			</StackPanel>
 
@@ -117,26 +134,25 @@
 					VerticalContentAlignment="Center"
 					Foreground="#211D1C"
 					FontSize="32"
-					Margin="0,163,0,0"
+					Margin="0,115,0,0"
 					Height="72"
+					IsEnabled="False"
 					Width="300"
-					/>
+					x:Name="StartHandleButton"
+					Click="Button_Click"/>
 		</Grid>
 		<StackPanel Orientation="Horizontal" VerticalAlignment="Center" 
 					HorizontalAlignment="Center"
 					Grid.Row="3"
 					Grid.RowSpan="2"
-					Grid.ColumnSpan="5"
-					>
+					Grid.ColumnSpan="5">
 			<ProgressBar 
 					 Background="#2C2827"
 					 Width="500"
 					 Height="8"
-					 HorizontalAlignment="Center" />
-			<Label Content="1232233/1000" Foreground="#99FFFFFF">
-				
-			</Label>
-
+					 HorizontalAlignment="Center"
+					 x:Name="ProgressDisplay"/>
+			<Label Content="--/--" Foreground="#99FFFFFF" x:Name="ProgressStep"/>
 		</StackPanel>
 
 

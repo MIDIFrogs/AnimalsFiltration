@@ -5,12 +5,25 @@ using System.IO;
 
 namespace AnimaFiltering.Services
 {
-    public record class AppPreferences(int MinWidth, int MinHeight, bool PreferGPU)
+    public record class AppPreferences
     {
         private readonly string filePath = "Options.json";
 
-        private AppPreferences(int minWidth, int minHeight, bool preferGPU, string path) : this(minWidth, minHeight, preferGPU)
+        public int MinWidth { get; set; }
+
+        public int MinHeight { get; set; }
+
+        public bool PreferGPU { get; set; }
+
+        public AppPreferences()
         {
+        }
+
+        private AppPreferences(int minWidth, int minHeight, bool preferGPU, string path)
+        {
+            MinWidth = minWidth;
+            MinHeight = minHeight;
+            PreferGPU = preferGPU;
             filePath = path;
         }
 

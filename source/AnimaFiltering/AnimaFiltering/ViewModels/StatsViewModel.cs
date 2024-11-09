@@ -11,7 +11,20 @@ namespace AnimaFiltering.ViewModels
     internal partial class StatsViewModel : ViewModelBase
     {
         [ObservableProperty] private CameraStats? selectedStats;
-        [ObservableProperty] private DonutChart? chart;
+        [ObservableProperty] private DonutChart chart = new() 
+        {
+            Entries = 
+            [
+                new() 
+                { 
+                    Value = 1, 
+                    Label = "Выберите камеру", 
+                    ValueLabel = "--",
+                    Color = new SKColor(0, 0, 0, 0x40),
+                }
+            ],
+            BackgroundColor = SKColor.Empty,
+        };
 
         public CameraManager Cameras { get; } = App.Services.GetRequiredService<CameraManager>();
 
@@ -22,18 +35,22 @@ namespace AnimaFiltering.ViewModels
             {
                 Entries = [
                     new(){
-                        Color = SKColors.DarkGreen,
+                        Color = new SKColor(0x55, 0xff, 0x55, 0x70),
                         Label = "Хорошие фото",
                         ValueLabel = SelectedStats.GoodImages.ToString(),
-                        Value = SelectedStats.GoodImages
+                        Value = SelectedStats.GoodImages,
+                        TextColor = SKColors.Black,
                     },
                     new(){
-                        Color = SKColors.DarkRed,
+                        Color = new SKColor(0xff, 0x55, 0x55, 0x70),
                         Label = "Плохие фото",
                         ValueLabel = (SelectedStats.ProcessedImages - SelectedStats.GoodImages).ToString(),
-                        Value = SelectedStats.ProcessedImages - SelectedStats.GoodImages
+                        Value = SelectedStats.ProcessedImages - SelectedStats.GoodImages,
+                        TextColor = SKColors.Black
                     }
-                ]
+                ],
+                BackgroundColor = SKColor.Empty,
+                Margin = 30
             };
         }
     }

@@ -17,16 +17,21 @@ namespace Avalonia.Microcharts
         public Chart Chart
         {
             get => chart;
-            set => SetAndRaise(ChartProperty, ref chart, value);
+            set
+            {
+                bool flag = false;
+                if (value != chart)
+                {
+                    flag = true;
+                }
+                SetAndRaise(ChartProperty, ref chart, value);
+                if (flag) 
+                    InvalidateVisual();
+            }
         }
 
         public static readonly DirectProperty<MicrochartControl, Chart> ChartProperty =
             AvaloniaProperty.RegisterDirect<MicrochartControl, Chart>("Chart", c => c.Chart, (c, v) => c.Chart = v);
-
-        public MicrochartControl()
-        {
-            this.GetObservable(ChartProperty).Subscribe(new ChartChangedObserver(this));
-        }
 
         protected override Size MeasureOverride(Size availableSize)
             => availableSize;
@@ -37,25 +42,6 @@ namespace Avalonia.Microcharts
             this.custom.Chart = this.chart;
 
             context.Custom(custom);
-        }
-
-        private class ChartChangedObserver(MicrochartControl chart) : IObserver<Chart>
-        {
-            public void OnCompleted()
-            {
-                chart.InvalidateVisual();
-                // Completed
-            }
-
-            public void OnError(Exception error)
-            {
-                // Do nothing.
-            }
-
-            public void OnNext(Chart value)
-            {
-                chart.InvalidateVisual();
-            }
         }
 
         private class CustomDrawingOperation : ICustomDrawOperation

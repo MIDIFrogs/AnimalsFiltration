@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:microcharts="clr-namespace:Avalonia.Microcharts;assembly=Avalonia.Microcharts"
 			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="AnimaFiltering.StatsView">
+             x:Class="AnimaFiltering.Views.StatsView">
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="*"/>
@@ -15,7 +15,7 @@
 			<RowDefinition Height="5*"/>
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
-		<ComboBox x:Name="CameraSelector" ItemsSource="{Binding Cameras}"/>
-		<microcharts:MicrochartControl  Margin="10, 10, 10, 10"/>
+		<ComboBox x:Name="CameraSelector" SelectionChanged="ComboBox_SelectionChanged" ItemsSource="{Binding Cameras}" Width="200" SelectedIndex="0"/>
+		<microcharts:MicrochartControl Grid.Row="1" Chart="{Binding Chart}" Margin="10, 10, 10, 10"/>
 	</Grid>
 </UserControl>

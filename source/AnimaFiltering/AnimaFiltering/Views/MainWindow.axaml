@@ -13,5 +13,15 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="AnimaFiltering"
 		CanResize="False">
-        <views:MainView />
+	<TabControl SelectionChanged="TabControl_SelectionChanged">
+		<TabControl.Items>
+			<TabItem Header="Main Menu">
+				<views:MainView Margin="0 40 0 0"/>
+			</TabItem>
+			<TabItem Header="Stats">
+				<views:StatsView Margin="0 40 0 0"/>
+			</TabItem>
+		</TabControl.Items>
+
+	</TabControl>
 </Window>

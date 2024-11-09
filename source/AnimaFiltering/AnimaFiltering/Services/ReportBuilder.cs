@@ -9,10 +9,11 @@ namespace AnimaFiltering.Services
 {
     internal class ReportBuilder
     {
-        public async Task WriteToCsvAsync(IAsyncEnumerable<AnimalDetectInfo> detections, CameraStats selectedCamera, string path)
+        public async Task WriteToCsvAsync(IAsyncEnumerable<AnimalDetectInfo> detections, CameraStats selectedCamera, string path, IProgress<int> progress)
         {
             using var writer = new StreamWriter(path);
             writer.WriteLine("Name,BBox,Class");
+            int i = 0;
             await foreach (var detect in detections)
             {
                 selectedCamera.ProcessedImages++;
@@ -23,6 +24,7 @@ namespace AnimaFiltering.Services
                        normalizedBBoxWidth = detect.Detection.Width / (double)detect.ImageSize.Width,
                        normalizedBBoxHeight = detect.Detection.Height / (double)detect.ImageSize.Height;
                 writer.WriteLine($"{detect.FileName},\"{normalizedBBoxXC},{normalizedBBoxYC},{normalizedBBoxWidth},{normalizedBBoxHeight}\",{Convert.ToInt32(detect.IsGood)}");
+                progress.Report(i++);
             }
         }
     }

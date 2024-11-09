@@ -7,7 +7,7 @@ using System.IO;
 
 namespace AnimaFiltering.Services
 {
-    internal class CameraManager : ObservableCollection<CameraStats>
+    public class CameraManager : ObservableCollection<CameraStats>
     {
         private readonly string filePath;
 
@@ -18,6 +18,11 @@ namespace AnimaFiltering.Services
             {
                 Add(item);
             }
+        }
+
+        public CameraManager()
+        {
+
         }
 
         public CameraManager(string path)

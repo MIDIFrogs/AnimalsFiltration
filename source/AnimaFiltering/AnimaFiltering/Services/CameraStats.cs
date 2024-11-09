@@ -8,10 +8,15 @@ namespace AnimaFiltering.Services
 {
     public class CameraStats
     {
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         public int ProcessedImages { get; set; }
 
         public int GoodImages { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

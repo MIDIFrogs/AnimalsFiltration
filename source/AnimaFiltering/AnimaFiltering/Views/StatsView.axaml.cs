@@ -4,7 +4,7 @@ using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AnimaFiltering;
+namespace AnimaFiltering.Views;
 
 public partial class StatsView : UserControl
 {
@@ -15,6 +15,12 @@ public partial class StatsView : UserControl
         {
             DataContext = App.Services.GetRequiredService<StatsViewModel>();
         }
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        CameraSelector.SelectedIndex = 0;
     }
 
     private void ComboBox_SelectionChanged(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
